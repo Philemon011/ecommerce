@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('admin', [AuthController::class, 'login_admin']);
 Route::post('admin', [AuthController::class, 'auth_login_admin']);
+Route::get('admin/logout', [AuthController::class, 'logout_admin']);
 
 Route::get('admin/dashboard', function () {
     return view('admin.dashboard');

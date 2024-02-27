@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Hash;
 class AuthController extends Controller
 {
     public function login_admin(){
+        if (!empty(Auth::check()) && Auth::user()->is_admin == 1) {
+            return redirect('admin/dashboard') ;
+        }
         return view('admin.auth.login');
     }
 
@@ -22,5 +25,10 @@ class AuthController extends Controller
         }else {
             return redirect()->back()->with('error', "Identifiant ou mot de passe incorrect");
         }
+    }
+
+    public function logout_admin(){
+        Auth::logout();
+        return redirect('admin') ;
     }
 }
